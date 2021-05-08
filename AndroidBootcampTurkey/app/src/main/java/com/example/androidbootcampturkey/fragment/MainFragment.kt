@@ -89,7 +89,10 @@ class MainFragment : Fragment() {
 
     fun getMoneyFragmentWithBundle() {
         arguments?.let {
-            if (!requireArguments().getString("para_fragment").isNullOrEmpty() || !requireArguments().getString("para_fragment2").isNullOrEmpty()) {
+            if (!requireArguments().getString("para_fragment")
+                    .isNullOrEmpty() || !requireArguments().getString("para_fragment2")
+                    .isNullOrEmpty()
+            ) {
                 println(requireArguments().getString("para_fragment"))
                 when (requireArguments().getString("para_fragment")) {
                     "tl" -> {

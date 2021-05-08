@@ -48,7 +48,6 @@ class EuroFragment : Fragment() {
         binding.euroRecyclerview.layoutManager = LinearLayoutManager(context)
         recyclerMoneyAdapter = EuroRecyclerViewAdapter(arrayListOf(), arrayListOf())
         binding.euroRecyclerview.adapter = recyclerMoneyAdapter
-
         super.onViewCreated(view, savedInstanceState)
     }
 

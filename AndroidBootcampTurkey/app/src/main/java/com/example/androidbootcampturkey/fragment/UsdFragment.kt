@@ -48,7 +48,6 @@ class UsdFragment : Fragment() {
         binding.usdRecycler.layoutManager = LinearLayoutManager(context)
         recyclerMoneyAdapter = UsdRecyclerViewAdapter(arrayListOf(), arrayListOf())
         binding.usdRecycler.adapter = recyclerMoneyAdapter
-
         super.onViewCreated(view, savedInstanceState)
     }
 

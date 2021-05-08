@@ -21,7 +21,7 @@ class UserNameViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun addUser(userName: UserName) {
-        viewModelScope.launch(Dispatchers.Main) {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.addUser(userName)
         }
     }
