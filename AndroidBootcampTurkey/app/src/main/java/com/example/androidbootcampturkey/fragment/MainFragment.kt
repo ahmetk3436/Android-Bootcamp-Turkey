@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.androidbootcampturkey.R
 import com.example.androidbootcampturkey.databinding.FragmentMainBinding
@@ -22,6 +24,7 @@ import com.example.androidbootcampturkey.repository.Repository
 import com.example.androidbootcampturkey.viewmodel.*
 import com.google.android.material.transition.MaterialContainerTransform
 import com.google.android.material.transition.MaterialElevationScale
+import kotlinx.coroutines.delay
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
@@ -35,7 +38,6 @@ class MainFragment : Fragment() {
     var usd: Float = 0.0F
     var euro: Float = 0.0F
     var sterlin: Float = 0.0F
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         exitTransition = MaterialElevationScale(false)
@@ -55,9 +57,13 @@ class MainFragment : Fragment() {
     override fun onStart() {
         faturaDatabase = ViewModelProvider(this).get(FaturaViewModel::class.java)
         userViewModel = ViewModelProvider(this).get(UserNameViewModel::class.java)
-        getData()
+        lifecycle.coroutineScope.launchWhenStarted {
+            delay(200L)
+            getData()
+        }
+
         binding.dolarButonu.setOnClickListener {
-            getTlFatura()
+            tlData()
         }
         binding.floatingActionButton.setOnClickListener {
             val frManager = requireActivity().supportFragmentManager
@@ -84,10 +90,22 @@ class MainFragment : Fragment() {
                 .commit()
         }
         getUserNameData()
-        getMoneyFragmentWithBundle()
-        getTlFatura()
+        lifecycle.coroutineScope.launchWhenStarted {
+            delay(300L)
+            getFragment(TryFragment())
+        }
+
+        lifecycleScope.launchWhenStarted {
+            delay(700L)
+            getTlFatura()
+        }
+        lifecycleScope.launchWhenStarted {
+            delay(1200L)
+            getMoneyFragmentWithBundle()
+        }
         super.onStart()
     }
+
     private fun getMoneyFragmentWithBundle() {
         arguments?.let {
             if (!requireArguments().getString("para_fragment")
@@ -179,7 +197,6 @@ class MainFragment : Fragment() {
                 }
             })
         } else {
-            moneyDatabase = ViewModelProvider(this).get(MoneyViewModel::class.java)
             moneyDatabase.readAllData.observe(this, { paraciklar ->
                 if (!paraciklar.isNullOrEmpty()) {
                     tl = paraciklar.first().TRY.toFloat()
@@ -209,7 +226,6 @@ class MainFragment : Fragment() {
     }
 
     private fun getTlFatura() {
-        getFragment(TryFragment())
         var para = 0.0F
         var para2 = 0.0F
         var para3 = 0.0F
@@ -217,26 +233,65 @@ class MainFragment : Fragment() {
         faturaDatabase = ViewModelProvider(this).get(FaturaViewModel::class.java)
         faturaDatabase.readAllFatura.observe(this, { fatura ->
             if (!fatura.isNullOrEmpty()) {
-                fatura.forEach { ack ->
-                    when (ack.para_birimi) {
+                fatura.forEach { faturas ->
+                    when (faturas.para_birimi) {
                         "tl" -> {
-                            para = ack.para_miktari!!.toFloat()
+                            para = faturas.para_miktari!!.toFloat()
                         }
                         "dolar" -> {
-                            val sonuc_dolar = (ack.para_miktari!!.toFloat() * (1.0 / usd).toFloat())
+                            val sonuc_dolar = (faturas.para_miktari!!.toFloat() * (1.0 / usd).toFloat())
                             para2 = sonuc_dolar
                         }
                         "euro" -> {
-                            val sonuc_euro = (ack.para_miktari!!.toFloat() * (1.0 / euro).toFloat())
+                            val sonuc_euro = (faturas.para_miktari!!.toFloat() * (1.0 / euro).toFloat())
                             para3 = sonuc_euro
                         }
                         "sterlin" -> {
                             val sonuc_sterlin =
-                                (ack.para_miktari!!.toFloat() * (1.0 / sterlin).toFloat())
+                                (faturas.para_miktari!!.toFloat() * (1.0 / sterlin).toFloat())
                             para4 = sonuc_sterlin
                         }
                     }
                     val sonuc = para + para2 + para3 + para4
+                    binding.kullaniciMainFaturaTutar.text = sonuc.toString()
+                    Glide.with(this).load(R.drawable.tl).fitCenter()
+                        .into(binding.kullaniciMainParaBirimiResim)
+                }
+            } else {
+                Toast.makeText(context, "Şuanda faturanız bulunmamaktadır", Toast.LENGTH_LONG)
+                    .show()
+            }
+        })
+    }
+
+    private fun tlData() {
+        getFragment(TryFragment())
+        var para = 0.0F
+        var para2 = 0.0F
+        var para3 = 0.0F
+        var para4 = 0.0F
+        faturaDatabase.readAllFatura.observe(this, { fatura ->
+            if (!fatura.isNullOrEmpty()) {
+                fatura.forEach { faturas ->
+                    when (faturas.para_birimi) {
+                        "tl" -> {
+                            para = faturas.para_miktari!!.toFloat()
+                        }
+                        "dolar" -> {
+                            val sonuc_dolar = (faturas.para_miktari!!.toFloat() * (1.0 / usd).toFloat())
+                            para2 = sonuc_dolar
+                        }
+                        "euro" -> {
+                            val sonuc_euro = (faturas.para_miktari!!.toFloat() * (1.0 / euro).toFloat())
+                            para3 = sonuc_euro
+                        }
+                        "sterlin" -> {
+                            val sonuc_sterlin =
+                                (faturas.para_miktari!!.toFloat() * (1.0 / sterlin).toFloat())
+                            para4 = sonuc_sterlin
+                        }
+                    }
+                    val sonuc = (para + para2 + para3 + para4)
                     binding.kullaniciMainFaturaTutar.text = sonuc.toString()
                     Glide.with(this).load(R.drawable.tl).fitCenter()
                         .into(binding.kullaniciMainParaBirimiResim)
@@ -257,24 +312,24 @@ class MainFragment : Fragment() {
         faturaDatabase = ViewModelProvider(this).get(FaturaViewModel::class.java)
         faturaDatabase.readAllFatura.observe(this, { fatura ->
             if (!fatura.isNullOrEmpty()) {
-                fatura.forEach { ack ->
-                    when (ack.para_birimi) {
+                fatura.forEach { faturas ->
+                    when (faturas.para_birimi) {
                         "tl" -> {
-                            val sonuc_tl = (ack.para_miktari!!.toFloat() * usd)
+                            val sonuc_tl = (faturas.para_miktari!!.toFloat() * usd)
                             para = sonuc_tl
                         }
                         "dolar" -> {
-                            val sonuc_dolar = (ack.para_miktari!!.toFloat())
+                            val sonuc_dolar = (faturas.para_miktari!!.toFloat())
                             para2 = sonuc_dolar
                         }
                         "euro" -> {
                             val sonuc_euro =
-                                (ack.para_miktari!!.toFloat() * (1.0 / euro).toFloat() * usd)
+                                (faturas.para_miktari!!.toFloat() * (1.0 / euro).toFloat() * usd)
                             para3 = sonuc_euro
                         }
                         "sterlin" -> {
                             val sonuc_sterlin =
-                                (ack.para_miktari!!.toFloat() * (1.0 / sterlin).toFloat() * usd)
+                                (faturas.para_miktari!!.toFloat() * (1.0 / sterlin).toFloat() * usd)
                             para4 = sonuc_sterlin
                         }
                     }
@@ -299,24 +354,24 @@ class MainFragment : Fragment() {
         faturaDatabase = ViewModelProvider(this).get(FaturaViewModel::class.java)
         faturaDatabase.readAllFatura.observe(this, { fatura ->
             if (!fatura.isNullOrEmpty()) {
-                fatura.forEach { ack ->
-                    when (ack.para_birimi) {
+                fatura.forEach { faturas ->
+                    when (faturas.para_birimi) {
                         "tl" -> {
-                            val sonuc_tl = (ack.para_miktari!!.toFloat() * euro)
+                            val sonuc_tl = (faturas.para_miktari!!.toFloat() * euro)
                             para = sonuc_tl
                         }
                         "dolar" -> {
                             val sonuc_dolar =
-                                (ack.para_miktari!!.toFloat() * (euro) * (1.0 / usd).toFloat())
+                                (faturas.para_miktari!!.toFloat() * (euro) * (1.0 / usd).toFloat())
                             para2 = sonuc_dolar
                         }
                         "euro" -> {
-                            val sonuc_euro = (ack.para_miktari!!.toFloat())
+                            val sonuc_euro = (faturas.para_miktari!!.toFloat())
                             para3 = sonuc_euro
                         }
                         "sterlin" -> {
                             val sonuc_sterlin =
-                                (ack.para_miktari!!.toFloat() * euro * (1 / sterlin))
+                                (faturas.para_miktari!!.toFloat() * euro * (1 / sterlin))
                             para4 = sonuc_sterlin
                         }
                     }
