@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation2"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/faturaEklemeFragment"
+        android:name="com.example.androidbootcampturkey.fragment.FaturaEklemeFragment"
+        android:label="fragment_fatura_ekleme"
+        tools:layout="@layout/fragment_fatura_ekleme" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.androidbootcampturkey.fragment.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/goFatura"
+            app:destination="@id/faturaEklemeFragment" />
+        <action
+            android:id="@+id/goName"
+            app:destination="@id/nameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nameFragment"
+        android:name="com.example.androidbootcampturkey.fragment.NameFragment"
+        android:label="fragment_name"
+        tools:layout="@layout/fragment_name" />
+</navigation>

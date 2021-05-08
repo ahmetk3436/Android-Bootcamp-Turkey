@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.NameFragment"
+    android:background="#2C2C2C"
+    >
+    <View
+        android:id="@+id/end_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:transitionName="shared_element_container" />
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:ems="10"
+        android:layout_marginTop="20sp"
+        android:hint="Adınız"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150sp"
+        android:id="@+id/radiogroup_kullanici_cinsiyet"
+        >
+
+        <RadioButton
+            android:id="@+id/kullanici_kadin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kadın"
+            android:textSize="25sp"
+            android:textColor="@color/white"/>
+
+        <RadioButton
+            android:id="@+id/kullanici_erkek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Erkek"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            />
+
+        <RadioButton
+            android:id="@+id/kullanici_belirtmedi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Belirtme"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/user_name_kaydet"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:backgroundTint="#848A8A"
+        android:layout_marginLeft="220sp"
+        android:layout_marginTop="300sp"
+        android:text="Kaydet"
+        android:textSize="26sp"
+        />
+
+    <Button
+        android:id="@+id/user_name_kaydetme"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:backgroundTint="#848A8A"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="300sp"
+        android:text="Kaydetme"
+        android:textSize="26sp" />
+</FrameLayout>

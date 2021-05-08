@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="faturaData"
+            type="com.example.androidbootcampturkey.model.FaturaData" />
+    </data>
+<LinearLayout
+    android:id="@+id/linearLayout2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:backgroundTint="#848A8A"
+    android:orientation="vertical"
+
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="#848A8A"
+        >
+
+        <LinearLayout
+
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#848A8A"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="410sp"
+                android:layout_height="100dp"
+                android:backgroundTint="#848A8A"
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/fatura_resmi"
+            android:layout_width="75sp"
+            android:layout_height="75sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout3" />
+
+        <TextView
+            android:id="@+id/fatura_aciklamasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="@{faturaData.fatura_aciklamasi}"
+            android:layout_marginRight="120sp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout3" />
+
+        <TextView
+            android:id="@+id/fatura_tutari"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="100sp"
+            android:textSize="18sp"
+            android:text="@{faturaData.para_miktari}"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout3" />
+
+        <ImageView
+            android:id="@+id/para_birimi_resim"
+            android:layout_width="75sp"
+            android:layout_height="75sp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+</layout>

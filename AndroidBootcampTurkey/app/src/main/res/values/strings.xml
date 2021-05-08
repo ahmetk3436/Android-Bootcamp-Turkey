@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Android Bootcamp Turkey</string>
+    <string name="todo">TODO</string>
+    <string name="harcama_tutar_n_z">Toplam Harcamanız</string>
+    <string name="merhaba">Merhaba</string>
+    <string name="t_rk_liras">Türk Lirası</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="fatura_acikklamasi">Harcama Açıklaması</string>
+    <string name="fatura_miktari">Harcama Tutarı</string>
+    <string name="kira">Kira</string>
+    <string name="fatura">Fatura</string>
+    <string name="belirtme">Belirtme</string>
+    <string name="tl">Tl</string>
+    <string name="dolar">Dolar</string>
+    <string name="euro">Euro</string>
+    <string name="sterlin">Sterlin</string>
+    <string name="ekle">Ekle</string>
+    <string name="ekleme">Ekleme Yapma</string>
+    <string name="tlbuton">tl_butonu</string>
+    <string name="harcama1">Harcamalarınızı düzenlemekten sıkıldınız mı ?</string>
+    <string name="harcama2">Paralarının nereye gittiğini unutuyor musun ?</string>
+    <string name="harcama3">Hadi Şunları Kolaylaştıralım !</string>
+    <string name="ileri">İleri</string>
+    <string name="bitir">Bitir</string>
+</resources>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2C2C2C"
+    tools:context=".DetailActivity">
+    <View
+        android:id="@+id/end_view_main"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:transitionName="shared_element_container" />
+    <LinearLayout
+
+        android:id="@+id/linearLayout_recycler_on_click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/button_recycler_on_click"
+            android:layout_width="410sp"
+            android:layout_height="100dp"
+            android:backgroundTint="#848A8A"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/para_birimi_resim_recycler_on_click"
+        android:layout_width="75sp"
+        android:layout_height="75sp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout_recycler_on_click"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout_recycler_on_click"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout_recycler_on_click" />
+
+    <ImageView
+        android:id="@+id/fatura_resmi_recycler_on_click"
+        android:layout_width="75sp"
+        android:layout_height="75sp"
+        android:layout_marginLeft="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout_recycler_on_click"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout_recycler_on_click"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout_recycler_on_click" />
+
+    <TextView
+        android:id="@+id/fatura_aciklamasi_recycler_on_click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="120sp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout_recycler_on_click"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout_recycler_on_click"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout_recycler_on_click"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout_recycler_on_click" />
+
+    <TextView
+        android:id="@+id/fatura_tutari_recycler_on_click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="160sp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout_recycler_on_click"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout_recycler_on_click"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout_recycler_on_click"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout_recycler_on_click" />
+
+    <Button
+        android:id="@+id/deleteDataButton"
+        android:layout_width="200sp"
+        android:layout_height="75sp"
+        android:layout_marginBottom="92dp"
+        android:text="SİL"
+        android:backgroundTint="#848A8A"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.FaturaEklemeFragment"
+    android:background="#2C2C2C"
+    >
+
+
+    <EditText
+        android:id="@+id/fatura_aciklamasitext"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:ems="10"
+        android:hint="@string/fatura_acikklamasi"
+        android:layout_marginTop="60sp"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/fatura_tutaritext"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:ems="10"
+        android:hint="@string/fatura_miktari"
+        android:layout_marginTop="150sp"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:importantForAutofill="no" />
+
+
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250sp"
+        android:id="@+id/radiogroup_faturatipi"
+        >
+
+        <RadioButton
+            android:id="@+id/a1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0sp"
+            android:text="@string/fatura"
+            android:textColor="@color/white"
+            />
+
+        <RadioButton
+            android:id="@+id/a2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0sp"
+            android:text="@string/kira"
+            android:textColor="@color/white"
+            />
+
+        <RadioButton
+            android:id="@+id/a3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0sp"
+            android:text="@string/belirtme"
+            android:textColor="@color/white"
+            />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400sp"
+        android:orientation="horizontal"
+        android:id="@+id/radiogroup_parabirimi"
+        >
+
+        <RadioButton
+            android:id="@+id/a4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0sp"
+            android:layout_marginStart="50sp"
+            android:text="@string/tl"
+            android:textColor="@color/white"
+            />
+
+        <RadioButton
+            android:id="@+id/a5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0sp"
+            android:layout_marginStart="20sp"
+            android:text="@string/dolar"
+            android:textColor="@color/white"
+            />
+
+        <RadioButton
+            android:id="@+id/a6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0sp"
+            android:layout_marginStart="20sp"
+            android:text="@string/euro"
+            android:textColor="@color/white"
+            />
+
+        <RadioButton
+            android:id="@+id/a7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0sp"
+            android:layout_marginStart="20sp"
+            android:text="@string/sterlin"
+            android:textColor="@color/white"
+            />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/fatura_ekleme"
+        android:layout_width="105sp"
+        android:layout_height="60sp"
+        android:layout_marginStart="250sp"
+        android:layout_marginTop="480sp"
+        android:text="@string/ekle"
+        android:backgroundTint="#848A8A"
+        />
+
+    <Button
+        android:id="@+id/fatura_ekleme_yapma"
+        android:layout_width="105sp"
+        android:layout_height="60sp"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="480sp"
+        android:text="@string/ekleme"
+        android:backgroundTint="#848A8A"
+        />
+</FrameLayout>

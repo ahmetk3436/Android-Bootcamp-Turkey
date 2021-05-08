@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.MainFragment">
+    <View
+        android:id="@+id/start_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:transitionName="shared_element_container" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toStartOf="@+id/kullanici_adi4"
+        app:layout_constraintStart_toStartOf="@+id/kullanici_adi4"
+        android:background="#2C2C2C"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="100sp"
+                android:backgroundTint="#323030"
+                app:cornerRadius="30sp">
+
+            </com.google.android.material.button.MaterialButton>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/kullanici_adi"
+            android:layout_width="112dp"
+            android:layout_height="36dp"
+            android:layout_marginBottom="50sp"
+            android:paddingStart="15sp"
+            android:text="@string/merhaba"
+            android:textColor="@color/material_on_primary_emphasis_high_type"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/kullanici_adi4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:layout_marginEnd="65sp"
+            android:paddingStart="15sp"
+            android:text="@string/harcama_tutar_n_z"
+            android:textColor="@color/material_on_primary_emphasis_high_type"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/kullanici_main_adi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="260sp"
+            android:paddingStart="5sp"
+            android:paddingEnd="5sp"
+            android:layout_marginBottom="20sp"
+            android:textSize="20sp"
+            android:textDirection="ltr"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/kullanici_main_fatura_tutar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80sp"
+            android:layout_marginBottom="20sp"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/kullanici_main_para_birimi_resim"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="45sp"
+            android:layout_marginEnd="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/todo"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#FFFFFF"
+            android:clickable="true"
+            android:contentDescription="@string/todo"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.954"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout2"
+            app:srcCompat="@drawable/ic_baseline_add_24" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dolar_butonu"
+            style="@style/CardView.Light"
+            android:layout_width="wrap_content"
+            android:layout_height="50sp"
+            android:layout_marginTop="108dp"
+            android:backgroundTint="#848A8A"
+            android:text="@string/t_rk_liras"
+            android:textSize="15sp"
+            app:cornerRadius="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dolar_butonu2"
+            style="@style/CardView.Light"
+            android:layout_width="wrap_content"
+            android:layout_height="50sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="108dp"
+            android:backgroundTint="#848A8A"
+            android:text="@string/dolar"
+            android:textSize="18sp"
+            app:cornerRadius="12sp"
+            app:layout_constraintStart_toEndOf="@+id/dolar_butonu"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dolar_butonu3"
+            android:layout_width="wrap_content"
+            android:layout_height="50sp"
+            android:layout_marginTop="108dp"
+            android:backgroundTint="#848A8A"
+            android:text="@string/euro"
+            style="@style/CardView.Light"
+            android:textSize="18sp"
+            app:cornerRadius="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/dolar_butonu4"
+            app:layout_constraintStart_toEndOf="@+id/dolar_butonu2"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dolar_butonu4"
+            android:layout_width="wrap_content"
+            android:layout_height="50sp"
+            android:layout_marginTop="108dp"
+            android:layout_marginEnd="4dp"
+            android:backgroundTint="#848A8A"
+            style="@style/CardView.Light"
+            android:text="@string/sterlin"
+            android:textSize="15sp"
+            app:cornerRadius="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="470dp"
+            android:layout_marginTop="31dp"
+            android:layout_marginBottom="72dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/kullanici_adi4"
+            app:layout_constraintHorizontal_bias="0.464"
+            app:layout_constraintStart_toStartOf="@+id/kullanici_adi4"
+            app:layout_constraintTop_toBottomOf="@+id/dolar_butonu2">
+
+        </FrameLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</FrameLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.screens.onboarding.screens.SecondScreen">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lottie_animation2"
+        app:lottie_rawRes="@raw/money_dagilma"
+        android:layout_marginBottom="150sp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_first_screen"
+        android:text="@string/harcama2"
+        android:layout_marginTop="600sp"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/next_2"
+        android:text="@string/ileri"
+        android:textSize="25sp"
+        android:layout_marginTop="640sp"
+        android:layout_marginLeft="320sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="670sp"
+        android:layout_marginLeft="155sp"
+        android:id="@+id/indicatorContainers2"
+        android:orientation="horizontal">
+    </LinearLayout>
+</FrameLayout>
