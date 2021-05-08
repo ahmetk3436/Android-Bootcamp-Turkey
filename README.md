@@ -8,20 +8,31 @@ Api linki = https://api.ratesapi.io/api/latest?base=TRY
 
 # Projedeki Kütüphaneler 
 Retrofit (Para birimi verileri çekildi)
+
 Room Database (Verileri saklamak için kullanıldı)
+
 View Binding (Uygulamanın optimizesini iyileştirmek ve uygulamayı hızlandırmak için kullanıldı)
+
 Data Binding (Uygulamanın optimizesini iyileştirmek ve uygulamayı hızlandırmak için kullanıldı)
+
 Navigation (Sayfalar arası geçiş sağlandı)
+
 Recyclerview (Saklanan verileri sıralı şekilde göstermek için kullanıldı)
+
 ViewPager2 (Onboarding Screen için kullanıldı)
+
 Lottie (Animasyonlar için kullanıldı)
 
 # Proje Özellikleri
 
 Minimum SDK : 21
+
 Harcama Takip
+
 Harcama tutarını farklı kurlarla görebilme
+
 Offline & Online KUllanım
+
 
 ## Giriş Bölümü
 
