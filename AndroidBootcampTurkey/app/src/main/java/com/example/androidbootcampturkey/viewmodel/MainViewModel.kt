@@ -13,7 +13,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     val myResponse: MutableLiveData<Response<Post>> = MutableLiveData()
 
     fun getPost() {
-        viewModelScope.launch(Dispatchers.Main) {
+        viewModelScope.launch {
             val response: Response<Post> = repository.getPost()
             myResponse.value = response
         }

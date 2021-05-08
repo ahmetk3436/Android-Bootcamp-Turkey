@@ -77,7 +77,30 @@ class DetailActivity : AppCompatActivity() {
             intent2.putExtra("para_toplam", paraToplam)
             startActivity(intent2)
         }
+    }
 
+    override fun onStart() {
+        val paraToplam1 = intent.getStringExtra("para_toplam_tl")!!.toFloat()
+        binding.deleteDataButton.setOnClickListener {
+            GlobalScope.launch(Dispatchers.Default) {
+                delay(800L)
+                faturaDatabase.deleteFatura(fatura_id)
+                recyclerMoneyAdapter!!.notifyItemRemoved(
+                    intent.getIntExtra(
+                        "fatura_id2",
+                        10000000
+                    )
+                )
+                val fatura_secilen = intent.getStringExtra("fatura_tutari")!!.toFloat()
+                paraToplam = (paraToplam1 - fatura_secilen)
+                println(paraToplam)
+                val intent2 = Intent(applicationContext, MainActivity::class.java)
+                intent2.putExtra("para", para_birimi)
+                intent2.putExtra("para_toplam", paraToplam.toString())
+                startActivity(intent2)
+            }
+        }
+        super.onStart()
     }
 
     private fun getDetail() {
@@ -98,7 +121,6 @@ class DetailActivity : AppCompatActivity() {
                     .into(binding.faturaResmiRecyclerOnClick)
             }
         }
-
         when (intent.getStringExtra("para_birimi")) {
             "tl" -> {
                 para_birimi = "tl"
@@ -121,186 +143,5 @@ class DetailActivity : AppCompatActivity() {
                     .into(binding.paraBirimiResimRecyclerOnClick)
             }
         }
-        binding.deleteDataButton.setOnClickListener {
-            faturaDatabase.deleteFatura(fatura_id)
-            when (para_birimi) {
-                "tl" -> {
-                    tlData()
-                }
-                "dolar" -> {
-                    usdData()
-                }
-                "euro" -> {
-                    euroData()
-                }
-                "sterlin" -> {
-                    sterlinData()
-                }
-            }
-            GlobalScope.launch(Dispatchers.Main) {
-                delay(500L)
-                recyclerMoneyAdapter!!.notifyItemRemoved(
-                    intent.getIntExtra(
-                        "fatura_id2",
-                        10000000
-                    )
-                )
-                paraToplam = sonuc
-                println(paraToplam)
-                val intent2 = Intent(applicationContext, MainActivity::class.java)
-                intent2.putExtra("para", para_birimi)
-                intent2.putExtra("para_toplam", paraToplam.toString())
-                startActivity(intent2)
-            }
-        }
-    }
-
-    private fun tlData(): Float {
-        var para = 0.0F
-        var para2 = 0.0F
-        var para3 = 0.0F
-        var para4 = 0.0F
-        faturaDatabase = ViewModelProvider(this).get(FaturaViewModel::class.java)
-        faturaDatabase.readAllFatura.observe(this, { fatura ->
-            if (!fatura.isNullOrEmpty())
-                fatura.forEach { ack ->
-                    GlobalScope.launch(Dispatchers.Main) {
-                        when (ack.para_birimi) {
-                            "tl" -> {
-                                para = ack.para_miktari!!.toFloat()
-                            }
-                            "dolar" -> {
-                                val sonuc_dolar =
-                                    (ack.para_miktari!!.toFloat() * (1.0 / usd).toFloat())
-                                para2 = sonuc_dolar
-                            }
-                            "euro" -> {
-                                val sonuc_euro =
-                                    (ack.para_miktari!!.toFloat() * (1.0 / euro).toFloat())
-                                para3 = sonuc_euro
-                            }
-                            "sterlin" -> {
-                                val sonuc_sterlin =
-                                    (ack.para_miktari!!.toFloat() * (1.0 / sterlin).toFloat())
-                                para4 = sonuc_sterlin
-                            }
-                        }
-                    }
-                    sonuc = para + para2 + para3 + para4
-                }
-        })
-        return sonuc
-    }
-
-    private fun usdData(): Float {
-        var para = 0.0F
-        var para2 = 0.0F
-        var para3 = 0.0F
-        var para4 = 0.0F
-        faturaDatabase = ViewModelProvider(this).get(FaturaViewModel::class.java)
-        faturaDatabase.readAllFatura.observe(this, { fatura ->
-            if (!fatura.isNullOrEmpty())
-                fatura.forEach { ack ->
-                    GlobalScope.launch(Dispatchers.Main) {
-                        when (ack.para_birimi) {
-                            "tl" -> {
-                                val sonuc_tl = (ack.para_miktari!!.toFloat() * usd)
-                                para = sonuc_tl
-                            }
-                            "dolar" -> {
-                                val sonuc_dolar = (ack.para_miktari!!.toFloat())
-                                para2 = sonuc_dolar
-                            }
-                            "euro" -> {
-                                val sonuc_euro =
-                                    (ack.para_miktari!!.toFloat() * (1.0 / euro).toFloat() * usd)
-                                para3 = sonuc_euro
-                            }
-                            "sterlin" -> {
-                                val sonuc_sterlin =
-                                    (ack.para_miktari!!.toFloat() * (1.0 / sterlin).toFloat() * usd)
-                                para4 = sonuc_sterlin
-                            }
-                        }
-                    }
-
-                    sonuc = para + para2 + para3 + para4
-                }
-        })
-        return sonuc
-    }
-
-    fun euroData(): Float {
-        var para = 0.0F
-        var para2 = 0.0F
-        var para3 = 0.0F
-        var para4 = 0.0F
-        faturaDatabase = ViewModelProvider(this).get(FaturaViewModel::class.java)
-        faturaDatabase.readAllFatura.observe(this, { fatura ->
-            if (!fatura.isNullOrEmpty())
-                fatura.forEach { ack ->
-                    GlobalScope.launch(Dispatchers.Main) {
-                        when (ack.para_birimi) {
-                            "tl" -> {
-                                val sonuc_tl = (ack.para_miktari!!.toFloat() * euro)
-                                para = sonuc_tl
-                            }
-                            "dolar" -> {
-                                val sonuc_dolar =
-                                    (ack.para_miktari!!.toFloat() * (euro) * (1.0 / usd).toFloat())
-                                para2 = sonuc_dolar
-                            }
-                            "euro" -> {
-                                val sonuc_euro = (ack.para_miktari!!.toFloat())
-                                para3 = sonuc_euro
-                            }
-                            "sterlin" -> {
-                                val sonuc_sterlin =
-                                    (ack.para_miktari!!.toFloat() * euro * (1 / sterlin))
-                                para4 = sonuc_sterlin
-                            }
-                        }
-                    }
-                    sonuc = para + para2 + para3 + para4
-                }
-        })
-        return sonuc
-    }
-
-    private fun sterlinData(): Float {
-        var para = 0.0F
-        var para2 = 0.0F
-        var para3 = 0.0F
-        var para4 = 0.0F
-        faturaDatabase = ViewModelProvider(this).get(FaturaViewModel::class.java)
-        faturaDatabase.readAllFatura.observe(this, { fatura ->
-            if (!fatura.isNullOrEmpty())
-                fatura.forEach { ack ->
-                    GlobalScope.launch {
-                        when (ack.para_birimi) {
-                            "tl" -> {
-                                val sonuc_tl = (ack.para_miktari!!.toFloat() * sterlin)
-                                para = sonuc_tl
-                            }
-                            "dolar" -> {
-                                val sonuc_dolar =
-                                    (ack.para_miktari!!.toFloat() * sterlin * (1 / usd))
-                                para2 = sonuc_dolar
-                            }
-                            "euro" -> {
-                                val sonuc_euro =
-                                    (ack.para_miktari!!.toFloat() * sterlin * (1 / euro))
-                                para3 = sonuc_euro
-                            }
-                            "sterlin" -> {
-                                val sonuc_sterlin = (ack.para_miktari!!.toFloat())
-                                para4 = sonuc_sterlin
-                            }
-                        }
-                    }
-                    sonuc = para + para2 + para3 + para4
-                }
-        })
-        return sonuc
     }
 }

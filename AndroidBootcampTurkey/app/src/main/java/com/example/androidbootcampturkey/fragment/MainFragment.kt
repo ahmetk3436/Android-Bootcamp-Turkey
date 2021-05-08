@@ -29,7 +29,6 @@ class MainFragment : Fragment() {
     private lateinit var userViewModel: UserNameViewModel
     private lateinit var moneyDatabase: MoneyViewModel
     private lateinit var faturaDatabase: FaturaViewModel
-    private var sonToplamPara: Float = 0.0f
     lateinit var userName: UserName
     private var model: Model? = null
     var tl: Float = 0.0F
@@ -54,6 +53,8 @@ class MainFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onStart() {
+        faturaDatabase = ViewModelProvider(this).get(FaturaViewModel::class.java)
+        userViewModel = ViewModelProvider(this).get(UserNameViewModel::class.java)
         getData()
         binding.dolarButonu.setOnClickListener {
             getTlFatura()
@@ -84,13 +85,13 @@ class MainFragment : Fragment() {
         }
         getUserNameData()
         getMoneyFragmentWithBundle()
+        getTlFatura()
         super.onStart()
     }
-
-    fun getMoneyFragmentWithBundle() {
+    private fun getMoneyFragmentWithBundle() {
         arguments?.let {
             if (!requireArguments().getString("para_fragment")
-                    .isNullOrEmpty() || !requireArguments().getString("para_fragment2")
+                    .isNullOrEmpty() && !requireArguments().getString("para_fragment2")
                     .isNullOrEmpty()
             ) {
                 println(requireArguments().getString("para_fragment"))
@@ -161,7 +162,7 @@ class MainFragment : Fragment() {
             viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
             viewModel.getPost()
             viewModel.myResponse.observe(this, { response ->
-                if (response.isSuccessful && isOnline(requireContext())) {
+                if (response.isSuccessful) {
                     moneyDatabase = ViewModelProvider(this).get(MoneyViewModel::class.java)
                     model = Model(
                         response.body()?.data!!.USD,
@@ -199,7 +200,6 @@ class MainFragment : Fragment() {
     }
 
     private fun getUserNameData() {
-        userViewModel = ViewModelProvider(this).get(UserNameViewModel::class.java)
         userViewModel.readAllUser.observe(this, { user ->
             if (!user.isNullOrEmpty()) {
                 binding.kullaniciMainAdi.text =
@@ -207,7 +207,6 @@ class MainFragment : Fragment() {
             }
         })
     }
-
 
     private fun getTlFatura() {
         getFragment(TryFragment())
@@ -217,7 +216,7 @@ class MainFragment : Fragment() {
         var para4 = 0.0F
         faturaDatabase = ViewModelProvider(this).get(FaturaViewModel::class.java)
         faturaDatabase.readAllFatura.observe(this, { fatura ->
-            if (!fatura.isNullOrEmpty())
+            if (!fatura.isNullOrEmpty()) {
                 fatura.forEach { ack ->
                     when (ack.para_birimi) {
                         "tl" -> {
@@ -242,6 +241,10 @@ class MainFragment : Fragment() {
                     Glide.with(this).load(R.drawable.tl).fitCenter()
                         .into(binding.kullaniciMainParaBirimiResim)
                 }
+            } else {
+                Toast.makeText(context, "Şuanda faturanız bulunmamaktadır", Toast.LENGTH_LONG)
+                    .show()
+            }
         })
     }
 
@@ -253,7 +256,7 @@ class MainFragment : Fragment() {
         var para4 = 0.0F
         faturaDatabase = ViewModelProvider(this).get(FaturaViewModel::class.java)
         faturaDatabase.readAllFatura.observe(this, { fatura ->
-            if (!fatura.isNullOrEmpty())
+            if (!fatura.isNullOrEmpty()) {
                 fatura.forEach { ack ->
                     when (ack.para_birimi) {
                         "tl" -> {
@@ -280,6 +283,10 @@ class MainFragment : Fragment() {
                     Glide.with(this).load(R.drawable.dolar).fitCenter()
                         .into(binding.kullaniciMainParaBirimiResim)
                 }
+            } else {
+                Toast.makeText(context, "Şuanda faturanız bulunmamaktadır", Toast.LENGTH_LONG)
+                    .show()
+            }
         })
     }
 
@@ -291,7 +298,7 @@ class MainFragment : Fragment() {
         var para4 = 0.0F
         faturaDatabase = ViewModelProvider(this).get(FaturaViewModel::class.java)
         faturaDatabase.readAllFatura.observe(this, { fatura ->
-            if (!fatura.isNullOrEmpty())
+            if (!fatura.isNullOrEmpty()) {
                 fatura.forEach { ack ->
                     when (ack.para_birimi) {
                         "tl" -> {
@@ -318,6 +325,10 @@ class MainFragment : Fragment() {
                     Glide.with(this).load(R.drawable.euro).fitCenter()
                         .into(binding.kullaniciMainParaBirimiResim)
                 }
+            } else {
+                Toast.makeText(context, "Şuanda faturanız bulunmamaktadır", Toast.LENGTH_LONG)
+                    .show()
+            }
         })
     }
 
@@ -329,7 +340,7 @@ class MainFragment : Fragment() {
         var para4 = 0.0F
         faturaDatabase = ViewModelProvider(this).get(FaturaViewModel::class.java)
         faturaDatabase.readAllFatura.observe(this, { fatura ->
-            if (!fatura.isNullOrEmpty())
+            if (!fatura.isNullOrEmpty()) {
                 fatura.forEach { ack ->
                     when (ack.para_birimi) {
                         "tl" -> {
@@ -354,6 +365,10 @@ class MainFragment : Fragment() {
                     Glide.with(this).load(R.drawable.sterlin).fitCenter()
                         .into(binding.kullaniciMainParaBirimiResim)
                 }
+            } else {
+                Toast.makeText(context, "Şuanda faturanız bulunmamaktadır", Toast.LENGTH_LONG)
+                    .show()
+            }
         })
     }
 }

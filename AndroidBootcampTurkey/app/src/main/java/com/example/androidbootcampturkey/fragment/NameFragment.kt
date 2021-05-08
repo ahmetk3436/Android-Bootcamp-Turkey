@@ -11,6 +11,7 @@ import com.example.androidbootcampturkey.R
 import com.example.androidbootcampturkey.databinding.FragmentNameBinding
 import com.example.androidbootcampturkey.model.UserName
 import com.example.androidbootcampturkey.viewmodel.UserNameViewModel
+import kotlinx.coroutines.*
 
 class NameFragment : Fragment() {
     lateinit var binding: FragmentNameBinding
@@ -31,8 +32,14 @@ class NameFragment : Fragment() {
     override fun onStart() {
         binding.userNameKaydet.setOnClickListener {
             userViewModel = ViewModelProvider(this).get(UserNameViewModel::class.java)
+
             if (userGenderCheck() && userNameCheck()) {
-                saveToDatabase()
+                GlobalScope.launch(Dispatchers.IO) {
+                    delay(300L)
+                    saveToDatabase()
+                }
+
+                goFragment(MainFragment())
             }
         }
         binding.userNameKaydetme.setOnClickListener {
@@ -74,13 +81,14 @@ class NameFragment : Fragment() {
         } else {
             isim = binding.userName.text.toString()
             userModel = UserName(isim!!, gender_name)
-            userViewModel.deleteUser()
             true
         }
     }
 
-    private fun saveToDatabase() {
-        userViewModel.addUser(userModel)
-        goFragment(MainFragment())
+    private suspend fun saveToDatabase() {
+        userViewModel.deleteUser()
+        coroutineScope {
+            userViewModel.addUser(userModel)
+        }
     }
 }

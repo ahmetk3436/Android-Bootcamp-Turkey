@@ -9,7 +9,7 @@ import com.example.androidbootcampturkey.model.FaturaData
 
 @Dao
 interface FaturaDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addFatura(money: FaturaData)
 
     @Query("SELECT * FROM fatura_bilgileri")

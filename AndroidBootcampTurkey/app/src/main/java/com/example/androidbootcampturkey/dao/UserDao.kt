@@ -10,7 +10,7 @@ import com.example.androidbootcampturkey.model.UserName
 @Dao
 interface UserDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addUser(userName: UserName)
 
     @Query("SELECT * FROM users")
