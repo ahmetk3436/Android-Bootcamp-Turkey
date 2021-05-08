@@ -1,5 +1,5 @@
 # Android-Bootcamp-Turkey
-Gdg Turkey adına Kotlin Bootcamp için bitirme projesidir.
+Gdg Turkey adına Kotlin Bootcamp için yapılmış Harcama Takip Uygulamasıdır.
 
 ## Giriş Bölümü
 
