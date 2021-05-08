@@ -239,11 +239,13 @@ class MainFragment : Fragment() {
                             para = faturas.para_miktari!!.toFloat()
                         }
                         "dolar" -> {
-                            val sonuc_dolar = (faturas.para_miktari!!.toFloat() * (1.0 / usd).toFloat())
+                            val sonuc_dolar =
+                                (faturas.para_miktari!!.toFloat() * (1.0 / usd).toFloat())
                             para2 = sonuc_dolar
                         }
                         "euro" -> {
-                            val sonuc_euro = (faturas.para_miktari!!.toFloat() * (1.0 / euro).toFloat())
+                            val sonuc_euro =
+                                (faturas.para_miktari!!.toFloat() * (1.0 / euro).toFloat())
                             para3 = sonuc_euro
                         }
                         "sterlin" -> {
@@ -278,11 +280,13 @@ class MainFragment : Fragment() {
                             para = faturas.para_miktari!!.toFloat()
                         }
                         "dolar" -> {
-                            val sonuc_dolar = (faturas.para_miktari!!.toFloat() * (1.0 / usd).toFloat())
+                            val sonuc_dolar =
+                                (faturas.para_miktari!!.toFloat() * (1.0 / usd).toFloat())
                             para2 = sonuc_dolar
                         }
                         "euro" -> {
-                            val sonuc_euro = (faturas.para_miktari!!.toFloat() * (1.0 / euro).toFloat())
+                            val sonuc_euro =
+                                (faturas.para_miktari!!.toFloat() * (1.0 / euro).toFloat())
                             para3 = sonuc_euro
                         }
                         "sterlin" -> {

@@ -52,14 +52,14 @@ class UsdRecyclerViewAdapter(
                     val money = moneyList.first().EUR.toFloat()
                     val money2 = moneyList.first().USD.toFloat()
                     val sonuc =
-                        para  * (1.0F / money) * (money2)
+                        para * (1.0F / money) * (money2)
                     currentItem.para_miktari = sonuc.toString()
                 }
                 "sterlin" -> {
                     val money = moneyList.first().GBP.toFloat()
                     val money2 = moneyList.first().USD.toFloat()
                     val sonuc =
-                        para  * (1.0F / money) * (money2)
+                        para * (1.0F / money) * (money2)
                     currentItem.para_miktari = sonuc.toString()
                 }
             }
